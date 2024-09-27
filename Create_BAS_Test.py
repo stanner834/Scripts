@@ -1,10 +1,14 @@
 import os
 import subprocess
 
-# Define the curl command you want to run
-curl_command = '''curl -X PUT -H "KEY:ADMIN123" \
+# Get user input for the "name" and "operation"
+name = input("Enter the name of the operation: ")
+adversary_id = input("Enter the adversary ID: ")
+
+# Define the curl command with user input
+curl_command = f'''curl -X PUT -H "KEY:ADMIN123" \
 http://127.0.0.1:8888/api/rest \
--d '{"index":"operations","name":"testoperation1","adversary_id":"d69e8660-62c9-431e-87eb-8cf6bd4e35cT"}' '''
+-d '{{"index":"operations","name":"{name}","adversary_id":"{adversary_id}"}}' '''
 
 # Use a Windows path for the script (change this to your desired location)
 script_path = 'C:\\tmp\\run_curl.bat'
@@ -26,3 +30,4 @@ subprocess.run(task_command, shell=True)
 print(f"Cron job (Task Scheduler) has been set to run {script_path} every month.")
 
 
+# To add Elastic export rules script? How can we do this with the Yaml file
